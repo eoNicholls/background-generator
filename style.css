@@ -25,3 +25,10 @@ h3 {
 	letter-spacing: 0.01em;
 }
 
+.direction-button-grid {
+	margin: 20px auto auto;
+	width: 10%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 10px;
+}
