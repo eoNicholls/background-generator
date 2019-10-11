@@ -11,6 +11,8 @@ html, body {
 }
 
 .content-wrapper {
+	box-sizing: border-box;
+	padding: 0 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -22,8 +24,9 @@ h1 {
 	font: 600 3.5em 'Dosis', sans-serif;
 	color: rgba(0,0,0,0.5);
 	text-align: center;
-	letter-spacing: 0.5em;
+	letter-spacing: 0.3em;
 	padding-left: 0.25em;
+	margin-top: 24px;
 	width: 100%;
 }
 
