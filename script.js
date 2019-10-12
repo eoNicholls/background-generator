@@ -48,7 +48,6 @@ function addEventListenerToGradientAngleButton(button) {
 function setRandomAngle() {
 	let angle = Math.floor(Math.random() * 360);
 	gradientAngle = angle + "deg";
-	console.log(angle, gradientAngle);
 }
 
 function setRandomAngleAndGradient() {

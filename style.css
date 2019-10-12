@@ -17,7 +17,7 @@ html, body {
 	flex-direction: column;
 	justify-content: space-between;
 	background: rgba(219, 219, 219, 0.5);
-	border-radius: 10px;
+	border-radius: 3px;
 }
 
 h1 {
