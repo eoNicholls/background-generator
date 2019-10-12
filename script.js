@@ -1,14 +1,16 @@
-var css = document.querySelector("h3");
-var color1 = document.querySelector(".color1");
-var color2 = document.querySelector(".color2");
-var color1Wrapper = document.querySelector("#color1-wrapper");
-var color2Wrapper = document.querySelector("#color2-wrapper");
-var randomButton = document.querySelector(".random-button");
-var body = document.querySelector("body");
-var gradientAngle = "90deg";
-var angleButtons = document.querySelectorAll(".angle-button");
+const body = document.querySelector("body");
+const css = document.querySelector("h3");
+const color1 = document.querySelector(".color1");
+const color2 = document.querySelector(".color2");
+const color1Wrapper = document.querySelector("#color1-wrapper");
+const color2Wrapper = document.querySelector("#color2-wrapper");
+const randomButton = document.querySelector(".random-button");
+const angleButtons = document.querySelectorAll(".angle-button");
 
-function setGradient() {
+let gradientAngle = "90deg";
+
+
+const setGradient = () => {
 	body.style.background = 
 		"linear-gradient("
 		+ gradientAngle
@@ -22,25 +24,25 @@ function setGradient() {
 	css.textContent = body.style.background +";";
 }
 
-function setRandomGradient() {
+const setRandomGradient = () => {
 	color1.value = getRandomColor();
 	color2.value = getRandomColor();
 }
 
-function getRandomColor() {
+const getRandomColor = () => {
 	let color = Math.floor(Math.random() * 16777216).toString(16);
 	return "#000000".slice(0, -color.length) + color;
 }
 
-function setGradientAngle(angle) {
+const setGradientAngle = (angle) => {
 	gradientAngle = angle;
 }
 
-function getGradientAngleFromButtonClassList(button) {
+const getGradientAngleFromButtonClassList = (button) => {
 	return button.classList[0];
 }
 
-function addEventListenerToGradientAngleButton(button) {
+const addEventListenerToGradientAngleButton = (button) => {
 	button.addEventListener("click", function() {
 		let angle = getGradientAngleFromButtonClassList(button);
 		setGradientAngle(angle);
@@ -48,18 +50,18 @@ function addEventListenerToGradientAngleButton(button) {
 	});
 }
 
-function setRandomAngle() {
+const setRandomAngle = () => {
 	let angle = Math.floor(Math.random() * 360);
 	gradientAngle = angle + "deg";
 }
 
-function setRandomAngleAndGradient() {
+const setRandomAngleAndGradient = () => {
 	setRandomAngle();
 	setRandomGradient();
 	setGradient();
 }
 
-function setColorWrapperBackgrounds() {
+const setColorWrapperBackgrounds = () => {
 	color1Wrapper.setAttribute("style", "background-color: " + color1.value + ";");
 	color2Wrapper.setAttribute("style", "background-color: " + color2.value + ";");
 }
