@@ -71,6 +71,10 @@ h3 {
 	border-bottom: 1px solid transparent;
 }
 
+.button:focus {
+	outline: 0;
+}
+
 .color-choice-buttons {
 	display: flex;
 	justify-content: center;
