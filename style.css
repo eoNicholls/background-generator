@@ -54,7 +54,7 @@ h3 {
 	visibility: hidden;
 }
 
-.color-button, .angle-button {
+.button {
 	border-radius: 3px;
 	border: none;
 	border-right: 2px solid rgba(0,0,0,0.5);
@@ -64,7 +64,7 @@ h3 {
 	transition: all;
 }
 
-.color-button:hover, .angle-button:hover {
+.button:hover {
 	border-top: 1px solid rgba(0,0,0,0.5);
 	border-left: 1px solid rgba(0,0,0,0.5);
 	border-right: 1px solid transparent;
