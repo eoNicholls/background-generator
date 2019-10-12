@@ -1,6 +1,8 @@
 var css = document.querySelector("h3");
 var color1 = document.querySelector(".color1");
 var color2 = document.querySelector(".color2");
+var color1Wrapper = document.querySelector("#color1-wrapper");
+var color2Wrapper = document.querySelector("#color2-wrapper");
 var randomButton = document.querySelector(".random-button");
 var body = document.querySelector("body");
 var gradientAngle = "90deg";
@@ -15,7 +17,8 @@ function setGradient() {
 		+ ", " 
 		+ color2.value 
 		+")";
-
+	
+	setColorWrapperBackgrounds();
 	css.textContent = body.style.background +";";
 }
 
@@ -54,6 +57,11 @@ function setRandomAngleAndGradient() {
 	setRandomAngle();
 	setRandomGradient();
 	setGradient();
+}
+
+function setColorWrapperBackgrounds() {
+	color1Wrapper.setAttribute("style", "background-color: " + color1.value + ";");
+	color2Wrapper.setAttribute("style", "background-color: " + color2.value + ";");
 }
 
 setRandomAngleAndGradient();

@@ -44,9 +44,14 @@ h3 {
 	margin: 0 auto 0 auto;
 }
 
+.color-wrapper {
+	border-radius: 3px;
+	background: rgba(219, 219, 219, 0.5);
+	margin: 0 5px;
+}
+
 .color-button {
-	margin-left: 5px;
-	margin-right: 5px;
+	visibility: hidden;
 }
 
 .color-button, .angle-button {
