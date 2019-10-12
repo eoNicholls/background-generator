@@ -2,7 +2,7 @@ html, body {
 	height: 100%;
 	margin: 0 auto;
 	font-family: 'Dosis', sans-serif;
-	color: rgba(0,0,0,0.5);
+	color: rgba(0,0,0,0.6);
 	text-align: center;
 	text-transform: uppercase;
 	display: flex;
@@ -18,13 +18,14 @@ html, body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background: rgba(219, 219, 219, 0.5);
+	background: rgba(219, 219, 219, 0.2);
 	border-radius: 3px;
+	border: 2px solid rgba(219, 219, 219, 0.5);
 }
 
 h1 {
 	font: 600 3.5em 'Dosis', sans-serif;
-	color: rgba(0,0,0,0.5);
+	color: inherit;
 	text-align: center;
 	letter-spacing: 0.3em;
 	padding-left: 0.25em;
@@ -35,7 +36,7 @@ h1 {
 h3 {
 	margin-left: 20px;
 	font: 900 1.5em 'Ubuntu Mono', monospace;
-	color: rgba(0,0,0,0.5);
+	color: inherit;
 	text-align: center;
 	text-transform: none;
 }
@@ -46,7 +47,6 @@ h3 {
 
 .color-wrapper {
 	border-radius: 3px;
-	background: rgba(219, 219, 219, 0.5);
 	margin: 0 5px;
 }
 
@@ -61,6 +61,7 @@ h3 {
 	border-bottom: 2px solid rgba(0,0,0,0.5);
 	background-color: rgba(219, 219, 219, 0.5);
 	font: inherit;
+	color: rgba(0,0,0,0.8);
 	transition: all;
 }
 
