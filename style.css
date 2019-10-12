@@ -50,16 +50,16 @@ h3 {
 .color-button, .angle-button {
 	border-radius: 3px;
 	border: none;
-	border-right: 2px solid black;
-	border-bottom: 2px solid black;
+	border-right: 2px solid rgba(0,0,0,0.5);
+	border-bottom: 2px solid rgba(0,0,0,0.5);
 	background-color: rgba(219, 219, 219, 0.5);
 	font: inherit;
 	transition: all;
 }
 
 .color-button:hover, .angle-button:hover {
-	border-top: 1px solid black;
-	border-left: 1px solid black;
+	border-top: 1px solid rgba(0,0,0,0.5);
+	border-left: 1px solid rgba(0,0,0,0.5);
 	border-right: 1px solid transparent;
 	border-bottom: 1px solid transparent;
 }

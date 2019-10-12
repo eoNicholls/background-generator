@@ -22,10 +22,6 @@ function setGradient() {
 function setRandomGradient() {
 	color1.value = getRandomColor();
 	color2.value = getRandomColor();
-	let angle = getGradientAngleFromButtonClassList(
-		angleButtons[Math.floor(Math.random() * angleButtons.length)]);
-	setGradientAngle(angle);
-	setGradient();
 }
 
 function getRandomColor() {
@@ -49,9 +45,21 @@ function addEventListenerToGradientAngleButton(button) {
 	});
 }
 
-setRandomGradient();
+function setRandomAngle() {
+	let angle = Math.floor(Math.random() * 360);
+	gradientAngle = angle + "deg";
+	console.log(angle, gradientAngle);
+}
+
+function setRandomAngleAndGradient() {
+	setRandomAngle();
+	setRandomGradient();
+	setGradient();
+}
+
+setRandomAngleAndGradient();
 
 color1.addEventListener("input", setGradient);
 color2.addEventListener("input", setGradient);
-randomButton.addEventListener("click", setRandomGradient);
 angleButtons.forEach(addEventListenerToGradientAngleButton);
+randomButton.addEventListener("click", setRandomAngleAndGradient);
