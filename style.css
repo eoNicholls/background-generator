@@ -66,14 +66,18 @@ h3 {
 }
 
 .button:hover {
-	border-top: 1px solid rgba(0,0,0,0.5);
-	border-left: 1px solid rgba(0,0,0,0.5);
-	border-right: 1px solid transparent;
-	border-bottom: 1px solid transparent;
+	cursor: pointer;
 }
 
 .button:focus {
 	outline: 0;
+}
+
+.button:active {
+	border-top: 1px solid rgba(0,0,0,0.5);
+	border-left: 1px solid rgba(0,0,0,0.5);
+	border-right: 1px solid transparent;
+	border-bottom: 1px solid transparent;
 }
 
 .color-choice-buttons {
