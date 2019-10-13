@@ -9,6 +9,9 @@ html, body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	--button-opacity: 0.5;
+	--color-button-opacity: 0.6;
 }
 
 .content-wrapper {
@@ -27,8 +30,8 @@ h1 {
 	font: 600 3.5em 'Dosis', sans-serif;
 	color: inherit;
 	text-align: center;
-	letter-spacing: 0.3em;
-	padding-left: 0.25em;
+	letter-spacing: 0.2em;
+	padding-left: 0.1em;
 	margin-top: 24px;
 	width: 100%;
 }
@@ -48,6 +51,7 @@ h3 {
 .color-wrapper {
 	border-radius: 3px;
 	margin: 0 5px;
+	opacity: var(--color-button-opacity);
 }
 
 .color-button {
@@ -59,7 +63,7 @@ h3 {
 	border: none;
 	border-right: 2px solid rgba(0,0,0,0.5);
 	border-bottom: 2px solid rgba(0,0,0,0.5);
-	background-color: rgba(219, 219, 219, 0.5);
+	background-color: rgba(219, 219, 219, var(--button-opacity));
 	font: inherit;
 	color: rgba(0,0,0,0.8);
 	transition: all;
@@ -67,6 +71,8 @@ h3 {
 
 .button:hover {
 	cursor: pointer;
+	--button-opacity: 0.8;
+	--color-button-opacity: 1;
 }
 
 .button:focus {
