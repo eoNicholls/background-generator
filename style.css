@@ -54,6 +54,10 @@ h3 {
 	opacity: var(--color-button-opacity);
 }
 
+.lock-button {
+	opacity: var(--color-button-opacity);
+}
+
 .color-button {
 	visibility: hidden;
 }
@@ -88,14 +92,12 @@ h3 {
 
 .color-choice-buttons {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 }
 
-.angle-button-grid {
-	margin: 20px auto 0 auto;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 10px;
+.slider-labels {
+	display: flex;
+	justify-content: space-around;
 }
 
 .current-background-info {
