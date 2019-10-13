@@ -93,6 +93,38 @@ h3 {
 .color-choice-buttons {
 	display: flex;
 	justify-content: space-around;
+	margin: 10px 0;
+}
+
+.slider {
+	-webkit-appearance: none;
+	height: 15px;
+	background: rgba(219, 219, 219);
+	opacity: 0.5;
+}
+
+.slider:hover {
+	opacity: 0.8;
+}
+
+.slider:focus {
+	outline: 0;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 10px;
+	height: 15px;
+	background: rgba(20, 20, 20, 0.85);
+	cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+	width: 10px;
+	height: 15px;
+	background: black;
+	cursor: pointer;
 }
 
 .slider-labels {
