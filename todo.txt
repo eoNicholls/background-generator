@@ -1,0 +1,4 @@
+add circular sliders for direction and overall background transparency
+add option to add more gradients above / below
+	ordering?
+add a save button

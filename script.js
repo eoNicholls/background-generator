@@ -7,17 +7,16 @@ const randomButton = document.querySelector(".random-button");
 const angleButtons = document.querySelectorAll(".angle-button");
 const css = document.querySelector("h3");
 const copyButton = document.querySelector(".copy-button");
+const angleSlider = document.querySelector("#angle-slider");
+const opacitySlider = document.querySelector("#opacity-slider");
 
 let gradientAngle = "90deg";
+let gradientOpacity = "ff";
 
 
 const getRandomColor = () => {
 	let color = Math.floor(Math.random() * 16777216).toString(16);
 	return "#000000".slice(0, -color.length) + color;
-}
-
-const getGradientAngleFromButtonClassList = (button) => {
-	return button.classList[0];
 }
 
 const getRandomAngle = () => {
@@ -66,15 +65,9 @@ const setRandomBackgroundValues = () => {
 }
 
 const setBackground = () => {
-	body.style.background = 
-		"linear-gradient("
-		+ gradientAngle
-		+ ", "
-		+ color1.value 
-		+ ", " 
-		+ color2.value 
-		+")";
-	
+	let c1 = `${color1.value}${gradientOpacity}`;
+	let c2 = `${color2.value}${gradientOpacity}`;
+	body.setAttribute("style", `background: linear-gradient(${gradientAngle}, ${c1}, ${c2});`)
 	color1Wrapper.setAttribute("style", "background-color: " + color1.value + ";");
 	color2Wrapper.setAttribute("style", "background-color: " + color2.value + ";");
 	css.textContent = body.style.background +";";
@@ -85,18 +78,19 @@ setRandomBackgroundValues();
 setBackground();
 
 
-const addEventListenerToAngleButton = (button) => {
-	button.addEventListener("click", function() {
-		let angle = getGradientAngleFromButtonClassList(button);
-		gradientAngle = angle;
-		setBackground();
-	});
-}
-
 color1.addEventListener("input", setBackground);
 color2.addEventListener("input", setBackground);
-angleButtons.forEach(addEventListenerToAngleButton);
 randomButton.addEventListener("click", setRandomBackgroundValues);
 randomButton.addEventListener("click", setBackground);
 copyButton.addEventListener("click", copyCSSTextToClipboard);
 
+angleSlider.oninput = function() {
+	gradientAngle = `${this.value}deg`;
+	setBackground();
+}
+
+opacitySlider.oninput = function() {
+	gradientOpacity = Number(this.value).toString(16);
+	console.log(this.value, gradientOpacity);
+	setBackground();
+}

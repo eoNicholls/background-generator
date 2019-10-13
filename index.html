@@ -13,19 +13,13 @@
 		<div class="user-input">
 			<div class="color-choice-buttons">
 				<label id="color1-wrapper" class="color-wrapper button"><input class="color1 color-button" type="color" name="color1" value="#00ff00"></label>
+				<button class="random-button button fas fa-random" type="button"></button>
 				<label id="color2-wrapper" class="color-wrapper button"><input class="color2 color-button" type="color" name="color2" value="#ff0000"></label>
 			</div>
 
-			<div class="angle-button-grid">
-				<button class="315deg angle-button button" type="button">315°</button>
-				<button class="0deg angle-button button fas fa-arrow-up" type="button"></button>
-				<button class="45deg angle-button button" type="button">45°</button>
-				<button class="270deg angle-button button fas fa-arrow-left" type="button"></button>
-				<button class="0deg random-button button" type="button">random</button>
-				<button class="90deg angle-button button fas fa-arrow-right" type="button"></button>
-				<button class="225deg angle-button button" type="button">225°</button>
-				<button class="180deg angle-button button fas fa-arrow-down" type="button"></button>
-				<button class="135deg angle-button button" type="button">135°</button>
+			<div class="sliders">
+				<input type="range" min="0" max="360" value="1" class="slider" id="angle-slider">
+				<input type="range" min="1" max="255" value="255" class="slider" id="opacity-slider">
 			</div>
 		</div>
 
