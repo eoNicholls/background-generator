@@ -93,3 +93,7 @@ h3 {
 	justify-content: center;
 	align-items: baseline;
 }
+
+.copy-button {
+	padding: 5px 10px;
+}

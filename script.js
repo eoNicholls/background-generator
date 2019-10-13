@@ -6,6 +6,7 @@ const color2Wrapper = document.querySelector("#color2-wrapper");
 const randomButton = document.querySelector(".random-button");
 const angleButtons = document.querySelectorAll(".angle-button");
 const css = document.querySelector("h3");
+const copyButton = document.querySelector(".copy-button");
 
 let gradientAngle = "90deg";
 
@@ -22,6 +23,39 @@ const getGradientAngleFromButtonClassList = (button) => {
 const getRandomAngle = () => {
 	let angle = Math.floor(Math.random() * 360);
 	return angle + "deg";
+}
+
+
+const selectText = () => {
+    let node = css;
+
+    if (document.body.createTextRange) {
+        const range = document.body.createTextRange();
+        range.moveToElementText(node);
+        range.select();
+    } else if (window.getSelection) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    } else {
+        console.warn("Could not select text in node: Unsupported browser.");
+    }
+}
+
+const clearSelection = () => {
+	if (window.getSelection) {
+		window.getSelection().removeAllRanges();
+	} else if (document.selection) {
+		document.selection.empty();
+	}
+}
+
+const copyCSSTextToClipboard = () => {
+	selectText();
+	document.execCommand("copy");
+	clearSelection();
 }
 
 
@@ -64,3 +98,5 @@ color2.addEventListener("input", setBackground);
 angleButtons.forEach(addEventListenerToAngleButton);
 randomButton.addEventListener("click", setRandomBackgroundValues);
 randomButton.addEventListener("click", setBackground);
+copyButton.addEventListener("click", copyCSSTextToClipboard);
+
