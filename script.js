@@ -179,10 +179,18 @@ const setBackground = () => {
 	let left = visibilityCheck(leftControls);
 	let center = visibilityCheck(centerControls);
 	let right = visibilityCheck(rightControls);
-	let backgroundString = `${left}${center}${right}`;
+
+	// these are in the 'wrong' order for layering purposes
+	// it makes more sense the way css layers them to have the order like this
+	let backgroundString = `${right}${center}${left}`;
+
+	// remove trailing ', '
 	backgroundString = backgroundString.slice(0, -2);
+
 	body.style.background = backgroundString;
-	console.log(backgroundString);
 }
 
 window.addEventListener("click", setBackground);
+window.addEventListener("mousemove", setBackground);
+
+setBackground();
