@@ -2,20 +2,85 @@ const body = document.querySelector("body");
 const css = document.querySelector("h3");
 const copyButton = document.querySelector(".copy-button");
 
-const color1 = document.querySelector("#gradient-controls-center .color1");
-const color2 = document.querySelector("#gradient-controls-center .color2");
-const color1Wrapper = document.querySelector("#color1-wrapper-center");
-const color2Wrapper = document.querySelector("#color2-wrapper-center");
-const color1LockButton = document.querySelector("#color1-lock-button-center");
-const color2LockButton = document.querySelector("#color2-lock-button-center");
-const randomButton = document.querySelector("#gradient-controls-center .random-button");
-const angleSlider = document.querySelector("#angle-slider-center");
-const opacitySlider = document.querySelector("#opacity-slider-center");
-const angleSliderLabel = document.querySelector("#angle-slider-label-center span");
-const opacitySliderLabel = document.querySelector("#opacity-slider-label-center span");
+class GradientControls {
+	constructor(identifier) {
+		this.identifier = identifier;
+		this.wrapper = document.querySelector(`#gradient-controls-${identifier}`);
+		this.color1 = document.querySelector(`#gradient-controls-${identifier} .color1`);
+		this.color2 = document.querySelector(`#gradient-controls-${identifier} .color2`);
+		this.color1Wrapper = document.querySelector(`#color1-wrapper-${identifier}`);
+		this.color2Wrapper = document.querySelector(`#color2-wrapper-${identifier}`);
+		this.color1LockButton = document.querySelector(`#color1-lock-button-${identifier}`);
+		this.color2LockButton = document.querySelector(`#color2-lock-button-${identifier}`);
+		this.randomButton = document.querySelector(`#gradient-controls-${identifier} .random-button`);
+		this.angleSlider = document.querySelector(`#angle-slider-${identifier}`);
+		this.opacitySlider = document.querySelector(`#opacity-slider-${identifier}`);
+		this.angleSliderLabel = document.querySelector(`#angle-slider-label-${identifier} span`);
+		this.opacitySliderLabel = document.querySelector(`#opacity-slider-label-${identifier} span`);
 
-let gradientAngle = "90";
-let gradientOpacity = "ff";
+		this.gradientAngle = "90";
+		this.gradientOpacity = "ff";
+
+		this.color1.addEventListener("input", this.setBackground);
+		this.color2.addEventListener("input", this.setBackground);
+		this.randomButton.addEventListener("click", this.setRandomBackgroundValues);
+		this.randomButton.addEventListener("click", this.setBackground);
+
+		this.angleSlider.oninput = function() {
+			gradientAngle = this.value;
+			setBackground();
+		}
+		this.opacitySlider.oninput = function() {
+			gradientOpacity = Number(this.value).toString(16);
+			setBackground();
+		}
+
+		let func = this.lockInteraction;
+		this.color1LockButton.addEventListener("click", function() {
+			func(this)
+		});
+		this.color2LockButton.addEventListener("click", function() {
+			func(this)
+		});
+	}
+
+	setRandomBackgroundValues = () => {
+		this.gradientAngle = getRandomAngle();
+		this.angleSlider.value = this.gradientAngle;
+
+		if (this.color1LockButton.locked != true) {
+			this.color1.value = getRandomColor();
+		}
+		if (this.color2LockButton.locked != true) {
+			this.color2.value = getRandomColor();
+		}	
+	}
+
+	setBackground = () => {
+		let c1 = `${this.color1.value}${this.gradientOpacity}`;
+		let c2 = `${this.color2.value}${this.gradientOpacity}`;
+		body.setAttribute("style", `background: linear-gradient(${this.gradientAngle}deg, ${c1}, ${c2});`);
+		this.color1Wrapper.setAttribute("style", "background-color: " + this. color1.value + ";");
+		this.color2Wrapper.setAttribute("style", "background-color: " + this. color2.value + ";");
+		this.color1LockButton.setAttribute("style", "background-color: " + this.color1.value + ";");
+		this.color2LockButton.setAttribute("style", "background-color: " + this.color2.value + ";");
+		css.textContent = body.style.background +";";
+		this.angleSliderLabel.innerHTML = this.gradientAngle;
+		this.opacitySliderLabel.innerHTML = Math.round((parseInt(this.gradientOpacity, 16) / 255) * 100);
+	}
+
+	lockInteraction = (lockButton) => {
+		if (lockButton.locked === true) {
+			lockButton.locked = false;
+			lockButton.classList.remove("fa-lock");
+			lockButton.classList.add("fa-lock-open");
+		} else {
+			lockButton.locked = true;
+			lockButton.classList.remove("fa-lock-open");
+			lockButton.classList.add("fa-lock");
+		}
+	}
+}
 
 
 const getRandomColor = () => {
@@ -62,87 +127,28 @@ const copyCSSTextToClipboard = () => {
 }
 
 
-const setRandomBackgroundValues = () => {
-	gradientAngle = getRandomAngle();
-	angleSlider.value = gradientAngle;
-
-	if (color1LockButton.locked != true) {
-		color1.value = getRandomColor();
-	}
-	if (color2LockButton.locked != true) {
-		color2.value = getRandomColor();
-	}
-}
-
-const setBackground = () => {
-	let c1 = `${color1.value}${gradientOpacity}`;
-	let c2 = `${color2.value}${gradientOpacity}`;
-	body.setAttribute("style", `background: linear-gradient(${gradientAngle}deg, ${c1}, ${c2});`);
-	color1Wrapper.setAttribute("style", "background-color: " + color1.value + ";");
-	color2Wrapper.setAttribute("style", "background-color: " + color2.value + ";");
-	color1LockButton.setAttribute("style", "background-color: " + color1.value + ";");
-	color2LockButton.setAttribute("style", "background-color: " + color2.value + ";");
-	css.textContent = body.style.background +";";
-	angleSliderLabel.innerHTML = gradientAngle;
-	opacitySliderLabel.innerHTML = Math.round((parseInt(gradientOpacity, 16) / 255) * 100);
-}
 
 
-setRandomBackgroundValues();
-setBackground();
+const leftControls = new GradientControls("left");
+const centerControls = new GradientControls("center");
+const rightControls = new GradientControls("right");
+centerControls.setRandomBackgroundValues();
+centerControls.setBackground();
 
-
-color1.addEventListener("input", setBackground);
-color2.addEventListener("input", setBackground);
-randomButton.addEventListener("click", setRandomBackgroundValues);
-randomButton.addEventListener("click", setBackground);
 copyButton.addEventListener("click", copyCSSTextToClipboard);
-
-angleSlider.oninput = function() {
-	gradientAngle = this.value;
-	setBackground();
-}
-
-opacitySlider.oninput = function() {
-	gradientOpacity = Number(this.value).toString(16);
-	setBackground();
-}
-
-
-const lockInteraction = (lockButton) => {
-	if (lockButton.locked === true) {
-		lockButton.locked = false;
-		lockButton.classList.remove("fa-lock");
-		lockButton.classList.add("fa-lock-open");
-	} else {
-		lockButton.locked = true;
-		lockButton.classList.remove("fa-lock-open");
-		lockButton.classList.add("fa-lock");
-	}
-}
-
-color1LockButton.addEventListener("click", function() {
-	lockInteraction(this)
-});
-color2LockButton.addEventListener("click", function() {
-	lockInteraction(this)
-});
 
 
 const addGradientButtonLeft = document.querySelector("#add-gradient-left");
 const addGradientButtonRight = document.querySelector("#add-gradient-right");
-const gradientControlsLeft = document.querySelector("#gradient-controls-left");
-const gradientControlsRight = document.querySelector("#gradient-controls-right");
-const gradientControlsCenter = document.querySelector("#gradient-controls-center");
 
 addGradientButtonLeft.addEventListener("click", function() {
-	gradientControlsLeft.setAttribute("style", "display: inline;");
+	leftControls.wrapper.setAttribute("style", "display: inline;");
+	leftControls.wrapper.style.borderRight = "2px solid rgba(219, 219, 219, 0.5)";
 	addGradientButtonLeft.setAttribute("style", "display: none");
-	gradientControlsLeft.style.borderRight = "2px solid rgba(219, 219, 219, 0.5)";
 })
 
 addGradientButtonRight.addEventListener("click", function() {
-	gradientControlsRight.setAttribute("style", "display: inline;");
+	rightControls.wrapper.setAttribute("style", "display: inline;");
+	rightControls.wrapper.style.borderLeft = "2px solid rgba(219, 219, 219, 0.5)";
 	addGradientButtonRight.setAttribute("style", "display: none");
-	gradientControlsRight.style.borderLeft = "2px solid rgba(219, 219, 219, 0.5)";
 })
