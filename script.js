@@ -71,7 +71,7 @@ class GradientControls {
 		let c1 = `${this.color1.value}${this.gradientOpacity}`;
 		let c2 = `${this.color2.value}${this.gradientOpacity}`;
 		this.gradientString = `linear-gradient(${this.gradientAngle}deg, ${c1}, ${c2})`;
-		css.textContent = this.gradientString +";";
+		// css.textContent = this.gradientString +";";
 
 		this.color1Wrapper.style.backgroundColor = `${this.color1.value}`;
 		this.color2Wrapper.style.backgroundColor = `${this.color2.value}`;
@@ -167,6 +167,11 @@ addGradientButtonRight.addEventListener("click", function() {
 })
 
 
+const cssTextRight = document.querySelector(".css-text-right");
+const cssTextCenter = document.querySelector(".css-text-center");
+const cssTextLeft = document.querySelector(".css-text-left");
+
+
 const visibilityCheck = (controls) => {
 	if (controls.hidden === true) {
 		return "";
@@ -186,8 +191,12 @@ const setBackground = () => {
 
 	// remove trailing ', '
 	backgroundString = backgroundString.slice(0, -2);
-
 	body.style.background = backgroundString;
+	
+	if (right.length > 0) {right = right + "<br>";}
+	if (left.length > 0) {center = center + "<br>";}
+	cssString = `background: ${right}${center}${left}`.slice(0, -2) + ";";
+	css.innerHTML = cssString;
 }
 
 window.addEventListener("click", setBackground);

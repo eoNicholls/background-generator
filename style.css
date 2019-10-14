@@ -37,7 +37,7 @@ h1 {
 
 h3 {
 	margin-left: 20px;
-	font: 900 1.2em 'Ubuntu Mono', monospace;
+	font: 900 1.1em 'Ubuntu Mono', monospace;
 	color: inherit;
 	text-align: center;
 	text-transform: none;
@@ -136,7 +136,7 @@ h3 {
 .current-background-info {
 	display: flex;
 	justify-content: center;
-	align-items: baseline;
+	align-items: center;
 }
 
 .copy-button {
