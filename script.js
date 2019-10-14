@@ -2,8 +2,10 @@ const body = document.querySelector("body");
 const css = document.querySelector("h3");
 const copyButton = document.querySelector(".copy-button");
 
+
+
 class GradientControls {
-	constructor(identifier) {
+	constructor(identifier, hidden) {
 		this.identifier = identifier;
 		this.wrapper = document.querySelector(`#gradient-controls-${identifier}`);
 		this.color1 = document.querySelector(`#gradient-controls-${identifier} .color1`);
@@ -18,30 +20,39 @@ class GradientControls {
 		this.angleSliderLabel = document.querySelector(`#angle-slider-label-${identifier} span`);
 		this.opacitySliderLabel = document.querySelector(`#opacity-slider-label-${identifier} span`);
 
+		this.hidden = hidden;
+
 		this.gradientAngle = "90";
 		this.gradientOpacity = "ff";
 
-		this.color1.addEventListener("input", this.setBackground);
-		this.color2.addEventListener("input", this.setBackground);
+		this.color1.addEventListener("input", this.setGradient);
+		this.color2.addEventListener("input", this.setGradient);
 		this.randomButton.addEventListener("click", this.setRandomBackgroundValues);
-		this.randomButton.addEventListener("click", this.setBackground);
+		this.randomButton.addEventListener("click", this.setGradient);
 
-		this.angleSlider.oninput = function() {
-			gradientAngle = this.value;
-			setBackground();
-		}
-		this.opacitySlider.oninput = function() {
-			gradientOpacity = Number(this.value).toString(16);
-			setBackground();
-		}
+		this.angleSlider.oninput = this.angleSliderInteraction;
+		this.opacitySlider.oninput = this.opacitySliderInteraction;
 
-		let func = this.lockInteraction;
+		let lockFunc = this.lockInteraction;
 		this.color1LockButton.addEventListener("click", function() {
-			func(this)
+			lockFunc(this)
 		});
 		this.color2LockButton.addEventListener("click", function() {
-			func(this)
+			lockFunc(this)
 		});
+
+		this.setRandomBackgroundValues();
+		this.setGradient();
+	}
+
+	angleSliderInteraction = () => {
+		this.gradientAngle = this.angleSlider.value;
+		this.setGradient();
+	}
+
+	opacitySliderInteraction = () => {
+		this.gradientOpacity = Number(this.opacitySlider.value).toString(16);
+		this.setGradient();
 	}
 
 	setRandomBackgroundValues = () => {
@@ -56,15 +67,17 @@ class GradientControls {
 		}	
 	}
 
-	setBackground = () => {
+	setGradient = () => {
 		let c1 = `${this.color1.value}${this.gradientOpacity}`;
 		let c2 = `${this.color2.value}${this.gradientOpacity}`;
-		body.setAttribute("style", `background: linear-gradient(${this.gradientAngle}deg, ${c1}, ${c2});`);
-		this.color1Wrapper.setAttribute("style", "background-color: " + this. color1.value + ";");
-		this.color2Wrapper.setAttribute("style", "background-color: " + this. color2.value + ";");
-		this.color1LockButton.setAttribute("style", "background-color: " + this.color1.value + ";");
-		this.color2LockButton.setAttribute("style", "background-color: " + this.color2.value + ";");
-		css.textContent = body.style.background +";";
+		this.gradientString = `linear-gradient(${this.gradientAngle}deg, ${c1}, ${c2})`;
+		css.textContent = this.gradientString +";";
+
+		this.color1Wrapper.style.backgroundColor = `${this.color1.value}`;
+		this.color2Wrapper.style.backgroundColor = `${this.color2.value}`;
+		this.color1LockButton.style.backgroundColor = `${this.color1.value}`;
+		this.color2LockButton.style.backgroundColor = `${this.color2.value}`;
+		
 		this.angleSliderLabel.innerHTML = this.gradientAngle;
 		this.opacitySliderLabel.innerHTML = Math.round((parseInt(this.gradientOpacity, 16) / 255) * 100);
 	}
@@ -81,6 +94,7 @@ class GradientControls {
 		}
 	}
 }
+
 
 
 const getRandomColor = () => {
@@ -128,12 +142,9 @@ const copyCSSTextToClipboard = () => {
 
 
 
-
-const leftControls = new GradientControls("left");
-const centerControls = new GradientControls("center");
-const rightControls = new GradientControls("right");
-centerControls.setRandomBackgroundValues();
-centerControls.setBackground();
+const leftControls = new GradientControls("left", true);
+const centerControls = new GradientControls("center", false);
+const rightControls = new GradientControls("right", true);
 
 copyButton.addEventListener("click", copyCSSTextToClipboard);
 
@@ -144,11 +155,34 @@ const addGradientButtonRight = document.querySelector("#add-gradient-right");
 addGradientButtonLeft.addEventListener("click", function() {
 	leftControls.wrapper.setAttribute("style", "display: inline;");
 	leftControls.wrapper.style.borderRight = "2px solid rgba(219, 219, 219, 0.5)";
+	leftControls.hidden = false;
 	addGradientButtonLeft.setAttribute("style", "display: none");
 })
 
 addGradientButtonRight.addEventListener("click", function() {
 	rightControls.wrapper.setAttribute("style", "display: inline;");
 	rightControls.wrapper.style.borderLeft = "2px solid rgba(219, 219, 219, 0.5)";
+	rightControls.hidden = false;
 	addGradientButtonRight.setAttribute("style", "display: none");
 })
+
+
+const visibilityCheck = (controls) => {
+	if (controls.hidden === true) {
+		return "";
+	} else {
+		return controls.gradientString + ', ';
+	}
+}
+
+const setBackground = () => {
+	let left = visibilityCheck(leftControls);
+	let center = visibilityCheck(centerControls);
+	let right = visibilityCheck(rightControls);
+	let backgroundString = `${left}${center}${right}`;
+	backgroundString = backgroundString.slice(0, -2);
+	body.style.background = backgroundString;
+	console.log(backgroundString);
+}
+
+window.addEventListener("click", setBackground);
