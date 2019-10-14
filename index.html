@@ -11,32 +11,67 @@
 		<h1>Background Generator</h1>
 
 		<div class="user-input">
+
+			<button class="add-gradient button fas fa-plus" id="add-gradient-left"></button>
 			<div class="gradient-controls" id="gradient-controls-left">
-				<button class="add-gradient button fas fa-plus"></button>
+				<div class="color-choice-buttons">
+					<button class="lock-button button fas fa-lock-open" id="color1-lock-button-left" type="button"></button>
+					<label id="color1-wrapper-left" class="color-wrapper button"><input class="color1 color-button" type="color" name="color1" value="#00ff00"></label>
+					<button class="random-button button fas fa-random" type="button"></button>
+					<label id="color2-wrapper-left" class="color-wrapper button"><input class="color2 color-button" type="color" name="color2" value="#ff0000"></label>
+					<button class="lock-button button fas fa-lock-open" id="color2-lock-button-left" type="button"></button>
+				</div>
+
+				<div class="sliders">
+					<input type="range" min="0" max="360" value="1" class="slider" id="angle-slider-left">
+					<input type="range" min="25" max="255" value="255" class="slider" id="opacity-slider-left">
+				</div>
+
+				<div class="slider-labels">
+					<label id="angle-slider-label-left">Angle: <span></span>°</label>
+					<label id="opacity-slider-label-left">Opacity: <span></span>%</label>
+				</div>
 			</div>
 
 			<div class="gradient-controls" id="gradient-controls-center">
 				<div class="color-choice-buttons">
-					<button class="lock-button button fas fa-lock-open" id="color1-lock-button" type="button"></button>
-					<label id="color1-wrapper" class="color-wrapper button"><input class="color1 color-button" type="color" name="color1" value="#00ff00"></label>
+					<button class="lock-button button fas fa-lock-open" id="color1-lock-button-center" type="button"></button>
+					<label id="color1-wrapper-center" class="color-wrapper button"><input class="color1 color-button" type="color" name="color1" value="#00ff00"></label>
 					<button class="random-button button fas fa-random" type="button"></button>
-					<label id="color2-wrapper" class="color-wrapper button"><input class="color2 color-button" type="color" name="color2" value="#ff0000"></label>
-					<button class="lock-button button fas fa-lock-open" id="color2-lock-button" type="button"></button>
+					<label id="color2-wrapper-center" class="color-wrapper button"><input class="color2 color-button" type="color" name="color2" value="#ff0000"></label>
+					<button class="lock-button button fas fa-lock-open" id="color2-lock-button-center" type="button"></button>
 				</div>
 
 				<div class="sliders">
-					<input type="range" min="0" max="360" value="1" class="slider" id="angle-slider">
-					<input type="range" min="25" max="255" value="255" class="slider" id="opacity-slider">
+					<input type="range" min="0" max="360" value="1" class="slider" id="angle-slider-center">
+					<input type="range" min="25" max="255" value="255" class="slider" id="opacity-slider-center">
 				</div>
 
 				<div class="slider-labels">
-					<label id="angle-slider-label">Angle: <span></span>°</label>
-					<label id="opacity-slider-label">Opacity: <span></span>%</label>
+					<label id="angle-slider-label-center">Angle: <span></span>°</label>
+					<label id="opacity-slider-label-center">Opacity: <span></span>%</label>
 				</div>
 			</div>
 
+			<button class="add-gradient button fas fa-plus" id="add-gradient-right"></button>
 			<div class="gradient-controls" id="gradient-controls-right">
-				<button class="add-gradient button fas fa-plus"></button>
+				<div class="color-choice-buttons">
+					<button class="lock-button button fas fa-lock-open" id="color1-lock-button-right" type="button"></button>
+					<label id="color1-wrapper-right" class="color-wrapper button"><input class="color1 color-button" type="color" name="color1" value="#00ff00"></label>
+					<button class="random-button button fas fa-random" type="button"></button>
+					<label id="color2-wrapper-right" class="color-wrapper button"><input class="color2 color-button" type="color" name="color2" value="#ff0000"></label>
+					<button class="lock-button button fas fa-lock-open" id="color2-lock-button-right" type="button"></button>
+				</div>
+
+				<div class="sliders">
+					<input type="range" min="0" max="360" value="1" class="slider" id="angle-slider-right">
+					<input type="range" min="25" max="255" value="255" class="slider" id="opacity-slider-right">
+				</div>
+
+				<div class="slider-labels">
+					<label id="angle-slider-label-right">Angle: <span></span>°</label>
+					<label id="opacity-slider-label-right">Opacity: <span></span>%</label>
+				</div>
 			</div>
 		</div>
 

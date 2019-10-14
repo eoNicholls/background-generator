@@ -1,18 +1,18 @@
 const body = document.querySelector("body");
-const color1 = document.querySelector(".color1");
-const color2 = document.querySelector(".color2");
-const color1Wrapper = document.querySelector("#color1-wrapper");
-const color2Wrapper = document.querySelector("#color2-wrapper");
-const color1LockButton = document.querySelector("#color1-lock-button");
-const color2LockButton = document.querySelector("#color2-lock-button");
-const randomButton = document.querySelector(".random-button");
-const angleButtons = document.querySelectorAll(".angle-button");
 const css = document.querySelector("h3");
 const copyButton = document.querySelector(".copy-button");
-const angleSlider = document.querySelector("#angle-slider");
-const opacitySlider = document.querySelector("#opacity-slider");
-const angleSliderLabel = document.querySelector("#angle-slider-label span");
-const opacitySliderLabel = document.querySelector("#opacity-slider-label span");
+
+const color1 = document.querySelector("#gradient-controls-center .color1");
+const color2 = document.querySelector("#gradient-controls-center .color2");
+const color1Wrapper = document.querySelector("#color1-wrapper-center");
+const color2Wrapper = document.querySelector("#color2-wrapper-center");
+const color1LockButton = document.querySelector("#color1-lock-button-center");
+const color2LockButton = document.querySelector("#color2-lock-button-center");
+const randomButton = document.querySelector("#gradient-controls-center .random-button");
+const angleSlider = document.querySelector("#angle-slider-center");
+const opacitySlider = document.querySelector("#opacity-slider-center");
+const angleSliderLabel = document.querySelector("#angle-slider-label-center span");
+const opacitySliderLabel = document.querySelector("#opacity-slider-label-center span");
 
 let gradientAngle = "90";
 let gradientOpacity = "ff";
@@ -127,3 +127,22 @@ color1LockButton.addEventListener("click", function() {
 color2LockButton.addEventListener("click", function() {
 	lockInteraction(this)
 });
+
+
+const addGradientButtonLeft = document.querySelector("#add-gradient-left");
+const addGradientButtonRight = document.querySelector("#add-gradient-right");
+const gradientControlsLeft = document.querySelector("#gradient-controls-left");
+const gradientControlsRight = document.querySelector("#gradient-controls-right");
+const gradientControlsCenter = document.querySelector("#gradient-controls-center");
+
+addGradientButtonLeft.addEventListener("click", function() {
+	gradientControlsLeft.setAttribute("style", "display: inline;");
+	addGradientButtonLeft.setAttribute("style", "display: none");
+	gradientControlsLeft.style.borderRight = "2px solid rgba(219, 219, 219, 0.5)";
+})
+
+addGradientButtonRight.addEventListener("click", function() {
+	gradientControlsRight.setAttribute("style", "display: inline;");
+	addGradientButtonRight.setAttribute("style", "display: none");
+	gradientControlsRight.style.borderLeft = "2px solid rgba(219, 219, 219, 0.5)";
+})
