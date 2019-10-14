@@ -5,6 +5,7 @@ html, body {
 	color: rgba(0,0,0,0.6);
 	text-align: center;
 	text-transform: uppercase;
+	white-space: nowrap;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -15,7 +16,7 @@ html, body {
 }
 
 .content-wrapper {
-	padding: 0 20px;
+	padding: 0 40px;
 	max-height: 80%;
 	max-width: 90%;
 	display: flex;
@@ -30,15 +31,14 @@ h1 {
 	font: 600 3.5em 'Dosis', sans-serif;
 	color: inherit;
 	text-align: center;
-	letter-spacing: 0.2em;
-	padding-left: 0.1em;
+	letter-spacing: 0.1em;
 	margin-top: 24px;
 	width: 100%;
 }
 
 h3 {
 	margin-left: 20px;
-	font: 900 1.5em 'Ubuntu Mono', monospace;
+	font: 900 1.2em 'Ubuntu Mono', monospace;
 	color: inherit;
 	text-align: center;
 	text-transform: none;
@@ -140,4 +140,5 @@ h3 {
 
 .copy-button {
 	padding: 5px 10px;
+	margin-left: 20px;
 }
