@@ -151,3 +151,10 @@ h3 {
 .gradient-controls {
 	padding: 0 20px;
 }
+
+.visibility-button {
+	position: absolute;
+	top: 20px;
+	background: none;
+	border: none;
+}

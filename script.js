@@ -1,5 +1,7 @@
 const body = document.querySelector("body");
 const css = document.querySelector("h3");
+const contentWrapper = document.querySelector(".content-wrapper");
+const visibilityButton = document.querySelector(".visibility-button");
 const copyButton = document.querySelector(".copy-button");
 
 const cssTextCenter = document.querySelector(".css-text-center");
@@ -148,6 +150,23 @@ const visibilityCheck = (controls) => {
 
 
 
+// the variable and event listener below handle visibility of all the page content
+// allows the background to be seen without visual interference
+// NOTE: UNRELATED TO THE visibilityCheck() FUNCTION ABOVE
+let contentWrapperVisibility = true;
+
+visibilityButton.addEventListener("click", () => {
+	if (contentWrapperVisibility === true) {
+		contentWrapper.setAttribute("style", "display: none;");
+		contentWrapperVisibility = false;
+	} else {
+		contentWrapper.setAttribute("style", "display: flex;");
+		contentWrapperVisibility = true;
+	}
+})
+
+
+
 // these next three functions are used to select, add to clipboard and subsequently deselect the CSS text which corresponds to the current visible background
 const selectText = () => {
     let node = css;
@@ -218,3 +237,6 @@ window.addEventListener("mousemove", setBackground);
 
 // initialises the page background
 setBackground();
+
+
+
